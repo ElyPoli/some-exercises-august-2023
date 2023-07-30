@@ -1,0 +1,36 @@
+:root {
+    --bs-primary: #600000;
+    --bs-primary-rgb: 96, 0, 0;
+}
+
+.btn-primary {
+    --bs-btn-bg: #e39533;
+    --bs-btn-border-color: #e39533;
+    --bs-btn-hover-bg: #c27e2b;
+    --bs-btn-hover-border-color: #c27e2b;
+    --bs-btn-active-bg: #c27e2b;
+    --bs-btn-active-border-color: #c27e2b;
+    color: black;
+    font-weight: bold;
+}
+
+.tomato-timer > img {
+    width: 100%;
+}
+
+.tomato-timer {
+    width: 100px;
+    margin: auto;
+}
+
+.form-control-sm:focus {
+    color: var(--bs-body-color);
+    background-color: var(--bs-body-bg);
+    border-color: #e39533;
+    outline: 0;
+    box-shadow: 0 0 0 .15rem rgba(194, 126, 43, .25);
+}
+
+.my-fs-7 {
+    font-size: .8rem;
+}

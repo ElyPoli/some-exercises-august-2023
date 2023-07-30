@@ -26,6 +26,65 @@
 </head>
 
 <body>
+    <div id="app">
+        <main class="bg-primary vh-100 d-flex align-items-center justify-content-center">
+            <div class="container">
+                <div class="tomato-timer pb-3">
+                    <img src="img/tomato-timer.png" alt="Tomato timer">
+                </div>
+                <h1 class="fs-1 text-white text-center fw-bold m-0 pb-3">
+                    Pomodoro Technique
+                </h1>
+                <!-- Sezione - Form impostazione tempo -->
+                <div class="w-75 m-auto border rounded-3 p-3 mt-3 text-center">
+                    <h2 class="text-white pb-3">Insert time:</h2>
+                    <div class="row">
+                        <div class="col-lg-4 col-12 pb-3">
+                            <label for="time-work-1" class="form-label text-white fw-bold pe-2">Work time</label>
+                            <input type="number" class="form-control-sm rounded-2" id="time-work-1">
+                            <p class="m-0 p-0 pt-lg-2 text-white my-fs-7 fst-italic">(Typically 25 minutes)</p>
+                        </div>
+                        <div class="col-lg-4 col-12 pb-3">
+                            <label for="time-pause-1" class="form-label text-white fw-bold pe-2">Short pause
+                                time</label>
+                            <input type="number" class="form-control-sm rounded-2" id="time-pause-1">
+                            <p class="m-0 p-0 pt-lg-2 text-white my-fs-7 fst-italic">(Typically 5 minutes)</p>
+                        </div>
+                        <div class="col-lg-4 col-12">
+                            <label for="time-pause-1" class="form-label text-white fw-bold pe-2">Long pause time</label>
+                            <input type="number" class="form-control-sm rounded-2" id="time-pause-1">
+                            <p class="m-0 p-0 pt-lg-2 text-white my-fs-7 fst-italic">(Typically 15 minutes)</p>
+                        </div>
+                    </div>
+                    <div class="m-auto text-center pt-3">
+                        <button type="button" class="btn btn-primary">Start tomato</button>
+                    </div>
+                </div>
+                <!-- Sezione - Timer -->
+                <div class="w-75 m-auto border rounded-3 p-3 mt-3 text-center">
+                    <h3 class="text-white pb-3">Work time/Short pause time/Long pause time</h3>
+                    <!-- Timer -->
+                    <div class="text-white">
+                        TIMER
+                    </div>
+                    <!-- Pulsanti timer -->
+                    <div class="d-flex justify-content-center pt-3 pb-3">
+                        <button type="button" class="btn btn-primary me-2">Start</button>
+                        <button type="button" class="btn btn-primary me-2">Pause</button>
+                        <button type="button" class="btn btn-primary">Stop</button>
+                    </div>
+                    <!-- Avanzamento -->
+                    <div class="text-white">
+                        AVANZAMENTO - ogni 4 pomodori (time work) pausa lunga
+                    </div>
+                </div>
+
+
+
+
+            </div>
+        </main>
+    </div>
 
     <!-- Custom Js -->
     <script src="js/pomodoro-technique.js"></script>
