@@ -12,9 +12,22 @@
     --bs-btn-active-border-color: #c27e2b;
     color: black;
     font-weight: bold;
+    box-shadow: 0px 4px 0px 0px #c27e2b;
+    transition: transform .3s;
 }
 
-.tomato-timer > img {
+.btn-primary:hover {
+    transform: translateY(1px);
+    box-shadow: 0px 2px 0px 0px #c27e2b;
+    color: black;
+}
+
+.btn-primary.active {
+    transform: translateY(2px);
+    box-shadow: none;
+}
+
+.tomato-timer>img {
     width: 100%;
 }
 
