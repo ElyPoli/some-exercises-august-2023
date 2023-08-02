@@ -17,18 +17,46 @@ const app = Vue.createApp({
             timeEnd: false,
             countDown: "",
             error: false,
+            countDownCurrentName: "",
+            countDownFinished: false,
+            countDownFinishedName: "",
         }
     },
     methods: {
         /**
-         * Verifica che i valori inseirit siano validi e fa partire il primo countdown
+         * Verifica che i valori inseiriti siano validi e fa partire il primo countdown
          */
         startTomato() {
             if (this.workTime === "" || this.workTime <= 0 || this.shortPauseTime === "" || this.shortPauseTime <= 0 || this.longPauseTime === "" || this.longPauseTime <= 0) {
                 this.error = true;
             } else {
                 this.timerStart = true;
+                this.countDownCurrentName = "Work time";
                 this.timeInMillisForCountdown(this.workTime);
+            }
+        },
+        /**
+         * Avvia il timer successivo nella sequenza
+         */
+        startNextTimer() {
+            this.timeEnd = false;
+
+            if (this.countDownToLongPause > 1) {
+                if (this.countDownCurrentName === "Work time") {
+                    this.countDownCurrentName = "Short pause time";
+                    this.timeInMillisForCountdown(this.shortPauseTime);
+                } else {
+                    this.countDownCurrentName = "Work time";
+                    this.timeInMillisForCountdown(this.workTime);
+                }
+            } else if (this.countDownToLongPause === 0) {
+                this.countDownToLongPause = 8;
+                this.timerStart = false;
+                this.countDownFinished = true,
+                this.countDownFinishedName = "You're done, well done!";
+            } else {
+                this.countDownCurrentName = "Long pause time";
+                this.timeInMillisForCountdown(this.longPauseTime);
             }
         },
         /**
@@ -50,7 +78,6 @@ const app = Vue.createApp({
                 let distance = endTime - now;
 
                 if (distance <= 0) {
-                    console.log("Tempo scaduto");
                     clearInterval(interval);
                     this.timeEnd = true;
                 } else {
@@ -66,7 +93,6 @@ const app = Vue.createApp({
             }, 1000);
 
             this.countDownToLongPause--; // Aggiorno il contatore che indica la pausa lunga
-            console.log(this.countDownToLongPause);
         },
         /**
          * Attiva il pulsante specificato con btnClick e disattiva tutti gli altri pulsanti

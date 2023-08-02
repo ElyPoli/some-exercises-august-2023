@@ -60,11 +60,12 @@
                         </div>
                     </div>
                     <div class="m-auto text-center pt-3">
-                        <button type="button" class="btn btn-primary" @click="startTomato(timerStart)">Start
+                        <button type="button" class="btn btn-primary" @click="startTomato()">Start
                             tomato</button>
                     </div>
-                    <div class="alert alert-danger mt-2 fs-4 fw-bold text-uppercase pb-2" role="alert" v-show="error === true">
-                        Inserisci dei valori corretti
+                    <div class="alert alert-danger mt-2 fs-4 fw-bold text-uppercase pb-2" role="alert"
+                        v-show="error === true">
+                        Please enter correct values
                     </div>
                 </div>
                 <!-- Sezione impostazioni -->
@@ -77,9 +78,11 @@
                 </div>
                 <!-- Sezione - Timer -->
                 <div class="w-75 m-auto border rounded-3 p-3 mt-3 text-center" v-show="(timerStart === true)">
-                    <h3 class="text-white pb-3">Work time/Short pause time/Long pause time</h3>
+                    <h3 class="m-0 text-white pb-3 text-uppercase fs-5">
+                        {{ countDownCurrentName }}
+                    </h3>
                     <!-- Timer -->
-                    <div class="text-white fw-bold fs-5">
+                    <div class="text-white fw-bold fs-3">
                         {{ countDown }}
                     </div>
                     <!-- Pulsanti timer -->
@@ -98,8 +101,8 @@
                         </button>
                     </div>
                     <!-- Pulsante timer successivo -->
-                    <div>
-                        <button type="button" @click="btnActive('nextTimer')" v-show="timeEnd === true"
+                    <div class="pb-3">
+                        <button type="button" @click="startNextTimer()" v-show="timeEnd === true"
                             v-bind:class="(isBtnActive.nextTimer === true ? 'btn btn-primary me-2 active' : 'btn btn-primary me-2')">
                             Next timer
                         </button>
@@ -108,6 +111,12 @@
                     <div class="text-white">
                         AVANZAMENTO - ogni 4 pomodori (time work) pausa lunga
                     </div>
+                </div>
+                <!-- Countdown finito -->
+                <div class="w-75 m-auto border rounded-3 p-3 mt-3 text-center" v-show="(countDownFinished === true)">
+                    <h3 class="m-0 text-white text-uppercase">
+                        {{ countDownFinishedName }}
+                    </h3>
                 </div>
             </div>
         </main>
