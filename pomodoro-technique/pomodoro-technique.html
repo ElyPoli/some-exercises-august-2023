@@ -63,21 +63,24 @@
                         <button type="button" class="btn btn-primary" @click="startTomato(timerStart)">Start
                             tomato</button>
                     </div>
+                    <div class="alert alert-danger mt-2 fs-4 fw-bold text-uppercase pb-2" role="alert" v-show="error === true">
+                        Inserisci dei valori corretti
+                    </div>
                 </div>
                 <!-- Sezione impostazioni -->
-                <div class="w-75 m-auto border rounded-3 p-3 mt-3 text-center" v-show="(timerStart === true)">
-                    <ul>
-                        <li>Lavoro</li>
-                        <li>Pausa corta</li>
-                        <li>Pausa lunga</li>
-                    </ul>
+                <div class="w-75 m-auto border rounded-3 p-3 mt-3 text-center text-white"
+                    v-show="(timerStart === true)">
+                    <p class="m-0 p-0 pb-2">Work time = <span class="fw-bold">{{ workTime }}</span> minutes</p>
+                    <p class="m-0 p-0 pb-2">Short pause time = <span class="fw-bold">{{ shortPauseTime }}</span> minutes
+                    </p>
+                    <p class="m-0 p-0">Long pause time = <span class="fw-bold">{{ longPauseTime }}</span> minutes</p>
                 </div>
                 <!-- Sezione - Timer -->
                 <div class="w-75 m-auto border rounded-3 p-3 mt-3 text-center" v-show="(timerStart === true)">
                     <h3 class="text-white pb-3">Work time/Short pause time/Long pause time</h3>
                     <!-- Timer -->
-                    <div class="text-white">
-                        TIMER
+                    <div class="text-white fw-bold fs-5">
+                        {{ countDown }}
                     </div>
                     <!-- Pulsanti timer -->
                     <div class="d-flex justify-content-center pt-3 pb-3">
@@ -92,6 +95,13 @@
                         <button type="button" @click="btnActive('stopActive')"
                             v-bind:class="(isBtnActive.stopActive === true ? 'btn btn-primary active' : 'btn btn-primary')">
                             Stop
+                        </button>
+                    </div>
+                    <!-- Pulsante timer successivo -->
+                    <div>
+                        <button type="button" @click="btnActive('nextTimer')" v-show="timeEnd === true"
+                            v-bind:class="(isBtnActive.nextTimer === true ? 'btn btn-primary me-2 active' : 'btn btn-primary me-2')">
+                            Next timer
                         </button>
                     </div>
                     <!-- Avanzamento -->

@@ -47,3 +47,13 @@
 .my-fs-7 {
     font-size: .8rem;
 }
+
+.alert {
+    margin-bottom: 0;
+    background-color: transparent;
+    border: 0;
+}
+
+.alert-danger {
+    --bs-alert-color: #e39533;
+}
