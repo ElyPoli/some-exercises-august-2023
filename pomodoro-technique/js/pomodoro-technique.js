@@ -20,6 +20,10 @@ const app = Vue.createApp({
             countDownCurrentName: "",
             countDownFinished: false,
             countDownFinishedName: "",
+            checkTomato: [false, false, false, false],
+            indexCheckTomato: 0,
+            interval: "",
+            timeRemaining: "",
         }
     },
     methods: {
@@ -41,10 +45,15 @@ const app = Vue.createApp({
         startNextTimer() {
             this.timeEnd = false;
 
+            let btnClick = "";
+            this.btnActive(btnClick);
+
             if (this.countDownToLongPause > 1) {
                 if (this.countDownCurrentName === "Work time") {
                     this.countDownCurrentName = "Short pause time";
                     this.timeInMillisForCountdown(this.shortPauseTime);
+                    this.checkTomato[this.indexCheckTomato] = true; // Imposto il pomodoro corrente come completato
+                    this.indexCheckTomato++;
                 } else {
                     this.countDownCurrentName = "Work time";
                     this.timeInMillisForCountdown(this.workTime);
@@ -53,10 +62,12 @@ const app = Vue.createApp({
                 this.countDownToLongPause = 8;
                 this.timerStart = false;
                 this.countDownFinished = true,
-                this.countDownFinishedName = "You're done, well done!";
+                    this.countDownFinishedName = "You're done, well done!";
             } else {
                 this.countDownCurrentName = "Long pause time";
                 this.timeInMillisForCountdown(this.longPauseTime);
+                this.checkTomato[this.indexCheckTomato] = true; // Imposto il pomodoro corrente come completato
+                this.indexCheckTomato++;
             }
         },
         /**
@@ -73,12 +84,12 @@ const app = Vue.createApp({
          * @param {number} endTime 
          */
         startCountdown(endTime) {
-            let interval = setInterval(() => {
+            this.interval = setInterval(() => {
                 let now = new Date().getTime();
                 let distance = endTime - now;
 
                 if (distance <= 0) {
-                    clearInterval(interval);
+                    clearInterval(this.interval);
                     this.timeEnd = true;
                 } else {
                     let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
@@ -89,6 +100,8 @@ const app = Vue.createApp({
                     let secondsFormatted = seconds.toString().padStart(2, '0');
 
                     this.countDown = `${minutesFormatted}:${secondsFormatted}`;
+
+                    this.timeRemaining = distance; // Salvo quanto tempo rimane
                 }
             }, 1000);
 
@@ -114,6 +127,34 @@ const app = Vue.createApp({
 
                 this.isBtnActive[btnNowClick] = isActive; // Aggiorno il valore della chiave all'indice i
             }
+        },
+        /**
+         * Mette in pausa il timer corrente
+         * @param {string} btnClick 
+         */
+        btnPause(btnClick) {
+            this.btnActive(btnClick); // Richiamo la funzione che attiva il pulsante cliccato
+            clearInterval(this.interval); // Metto il timer in pausa
+        },
+        /**
+         * Riavvia il timer corrente utilizzando il tempo rimanente salvato
+         * @param {string} btnClick 
+         */
+        btnStart(btnClick) {
+            this.btnActive(btnClick); // Richiamo la funzione che attiva il pulsante cliccato
+            let endTime = new Date().getTime() + this.timeRemaining;
+            this.startCountdown(endTime); // Riavvio il timer
+        },
+        /**
+         * Stoppa il timer corrente impostando a 0 il countdown
+         * @param {string} btnClick 
+         */
+        btnStop(btnClick) {
+            this.btnActive(btnClick); // Richiamo la funzione che attiva il pulsante cliccato
+            clearInterval(this.interval); // Stoppo il timer
+            this.countDown = `00:00`;
+            this.timeEnd = true;
+            this.timeRemaining = "";
         },
     },
 })

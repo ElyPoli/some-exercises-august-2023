@@ -36,6 +36,16 @@
     margin: auto;
 }
 
+.tomato-timer-small {
+    width: 40px;
+    position: relative;
+}
+
+.tomato-check {
+    transform: scale(.8);
+    filter: invert(1) saturate(0);
+}
+
 .form-control-sm:focus {
     color: var(--bs-body-color);
     background-color: var(--bs-body-bg);

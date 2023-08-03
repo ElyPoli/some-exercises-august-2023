@@ -87,15 +87,15 @@
                     </div>
                     <!-- Pulsanti timer -->
                     <div class="d-flex justify-content-center pt-3 pb-3">
-                        <button type="button" @click="btnActive('startActive')"
+                        <button type="button" @click="btnStart('startActive')"
                             v-bind:class="(isBtnActive.startActive === true ? 'btn btn-primary me-2 active' : 'btn btn-primary me-2')">
                             Start
                         </button>
-                        <button type="button" @click="btnActive('pauseActive')"
+                        <button type="button" @click="btnPause('pauseActive')"
                             v-bind:class="(isBtnActive.pauseActive === true ? 'btn btn-primary me-2 active' : 'btn btn-primary me-2')">
                             Pause
                         </button>
-                        <button type="button" @click="btnActive('stopActive')"
+                        <button type="button" @click="btnStop('stopActive')"
                             v-bind:class="(isBtnActive.stopActive === true ? 'btn btn-primary active' : 'btn btn-primary')">
                             Stop
                         </button>
@@ -108,8 +108,16 @@
                         </button>
                     </div>
                     <!-- Avanzamento -->
-                    <div class="text-white">
-                        AVANZAMENTO - ogni 4 pomodori (time work) pausa lunga
+                    <div class="text-white tomato-timer tomato-timer-small d-flex justify-content-center">
+                        <!-- AVANZAMENTO - ogni 4 pomodori (time work) pausa lunga -->
+                        <img src="img/tomato-timer.png" alt="Tomato1"
+                            v-bind:class="(checkTomato[0] === true ? 'me-2 tomato-check' : 'me-2')">
+                        <img src="img/tomato-timer.png" alt="Tomato2"
+                            v-bind:class="(checkTomato[1] === true ? 'me-2 tomato-check' : 'me-2')">
+                        <img src="img/tomato-timer.png" alt="Tomato3"
+                            v-bind:class="(checkTomato[2] === true ? 'me-2 tomato-check' : 'me-2')">
+                        <img src="img/tomato-timer.png" alt="Tomato4"
+                            v-bind:class="(checkTomato[3] === true ? 'tomato-check' : '')">
                     </div>
                 </div>
                 <!-- Countdown finito -->
