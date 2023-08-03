@@ -34,6 +34,8 @@ const app = Vue.createApp({
             if (this.workTime === "" || this.workTime <= 0 || this.shortPauseTime === "" || this.shortPauseTime <= 0 || this.longPauseTime === "" || this.longPauseTime <= 0) {
                 this.error = true;
             } else {
+                this.error = false;
+                this.countDownFinished = false;
                 this.timerStart = true;
                 this.countDownCurrentName = "Work time";
                 this.timeInMillisForCountdown(this.workTime);
@@ -61,13 +63,16 @@ const app = Vue.createApp({
             } else if (this.countDownToLongPause === 0) {
                 this.countDownToLongPause = 8;
                 this.timerStart = false;
-                this.countDownFinished = true,
-                    this.countDownFinishedName = "You're done, well done!";
+                this.countDownFinished = true;
+                this.countDownFinishedName = "You're done, well done!";
             } else {
                 this.countDownCurrentName = "Long pause time";
                 this.timeInMillisForCountdown(this.longPauseTime);
                 this.checkTomato[this.indexCheckTomato] = true; // Imposto il pomodoro corrente come completato
                 this.indexCheckTomato++;
+                this.workTime = "";
+                this.shortPauseTime = "";
+                this.longPauseTime = "";
             }
         },
         /**
