@@ -65,14 +65,14 @@ const app = Vue.createApp({
                 this.timerStart = false;
                 this.countDownFinished = true;
                 this.countDownFinishedName = "You're done, well done!";
+                this.workTime = "";
+                this.shortPauseTime = "";
+                this.longPauseTime = "";
             } else {
                 this.countDownCurrentName = "Long pause time";
                 this.timeInMillisForCountdown(this.longPauseTime);
                 this.checkTomato[this.indexCheckTomato] = true; // Imposto il pomodoro corrente come completato
                 this.indexCheckTomato++;
-                this.workTime = "";
-                this.shortPauseTime = "";
-                this.longPauseTime = "";
             }
         },
         /**
