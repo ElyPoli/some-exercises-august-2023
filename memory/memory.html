@@ -31,9 +31,10 @@
             <h1 class="text-center text-uppercase p-0 m-0 pb-5">Memory</h1>
             <!-- Sezione carte -->
             <div class="row gy-4">
-                <div class="col-4 col-md-3 col-lg-2" v-for="memoryImg in randomMemoryCard()">
-                    <div class="my-card-img">
-                        <img :src="`img/memory-img${memoryImg.img}.svg`" :alt="`memory-img${memoryImg.img}`">
+                <div class="col-4 col-md-3 col-lg-2" v-for="memoryImg in randomMemoryImgsLists">
+                    <div class="my-card-img" @click="revealCard(memoryImg)">
+                        <img :src="`img/memory-img${memoryImg.img}.svg`" :alt="`memory-img${memoryImg.img}`"
+                        v-bind:class="(memoryImg.click === false ? 'd-inline-block' : 'd-none')">
                     </div>
                 </div>
 
