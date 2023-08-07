@@ -22,3 +22,14 @@ h1 {
 .my-card-img > img {
     width: 3rem;
 }
+
+.my-card-img.active {
+    background-color: #482121;
+    pointer-events: none;
+    transform: scale(.9);
+}
+
+.stop-click {
+    pointer-events: none;
+    opacity: .8;
+}

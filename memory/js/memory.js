@@ -86,6 +86,13 @@ const app = Vue.createApp({
                 },
             ],
             randomMemoryImgsLists: [],
+            lastImgClick: {
+                id: "",
+                img: "",
+                click: false,
+            },
+            stopClick: false,
+            firstClick: true,
         }
     },
     methods: {
@@ -122,7 +129,35 @@ const app = Vue.createApp({
          * @param {Object} imgId 
          */
         revealCard(imgClick) {
-            imgClick.click = true;
+            if (this.firstClick === true) {
+                imgClick.click = true;
+                this.firstClick = false;
+
+                // Salvo la prima immagine cliccata
+                this.lastImgClick.img = imgClick.img;
+                this.lastImgClick.id = imgClick.id;
+                this.lastImgClick.click = imgClick.click;
+            } else {
+                imgClick.click = true;
+                this.firstClick = true;
+                this.disableCardClicks(); // Rendo momentaneamente non cliccabili le card
+                if (this.lastImgClick.img != imgClick.img) {
+                    // Dopo un secondo le nascondo nascondo entrambe le carte 
+                    setTimeout(() => {
+                        imgClick.click = false;
+                        this.randomMemoryImgsLists[this.lastImgClick.id - 1].click = false;
+                    }, 1000);
+                }
+            }
+        },
+        /**
+         * Rende tutte le card momentaneamente non cliccabili
+         */
+        disableCardClicks() {
+            this.stopClick = true;
+            setTimeout(() => {
+                this.stopClick = false;
+            }, 1100);
         },
     },
     mounted() {
