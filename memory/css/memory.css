@@ -5,8 +5,11 @@ body {
 
 h1 {
     font-size: 3rem;
-    color: #482121;
     font-weight: bold;
+}
+
+.my-text-darkred {
+    color: #482121;
 }
 
 .my-card-img {

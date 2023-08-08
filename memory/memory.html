@@ -28,7 +28,7 @@
 <body>
     <div id="app">
         <main class="container mt-5 mb-5">
-            <h1 class="text-center text-uppercase p-0 m-0 pb-5">Memory</h1>
+            <h1 class="my-text-darkred text-center text-uppercase p-0 m-0 pb-5">Memory</h1>
             <!-- Sezione carte -->
             <div class="row gy-4">
                 <div class="col-4 col-md-3 col-lg-2" v-for="memoryImg in randomMemoryImgsLists"
@@ -36,9 +36,13 @@
                     <div @click="revealCard(memoryImg)"
                         v-bind:class="(memoryImg.click === true ? 'my-card-img active' : 'my-card-img')">
                         <img :src="`img/memory-img${memoryImg.img}.svg`" :alt="`memory-img${memoryImg.img}`"
-                            v-bind:class="(memoryImg.click === true ? 'd-inline-block' : 'd-none')">
+                            v-if="memoryImg.click === true">
                     </div>
                 </div>
+            </div>
+            <!-- Sezione gioco terminato -->
+            <div v-if="endGame === true">
+                <h2 class="text-center p-0 m-0 pt-5 my-text-darkred">You Win, Great Job!</h2>
             </div>
         </main>
     </div>

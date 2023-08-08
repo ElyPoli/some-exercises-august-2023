@@ -93,6 +93,8 @@ const app = Vue.createApp({
             },
             stopClick: false,
             firstClick: true,
+            endGame: false,
+            totalCardsRevealed: 0,
         }
     },
     methods: {
@@ -141,13 +143,21 @@ const app = Vue.createApp({
                 imgClick.click = true;
                 this.firstClick = true;
                 this.disableCardClicks(); // Rendo momentaneamente non cliccabili le card
+                this.totalCardsRevealed++;
                 if (this.lastImgClick.img != imgClick.img) {
                     // Dopo un secondo le nascondo nascondo entrambe le carte 
                     setTimeout(() => {
                         imgClick.click = false;
                         this.randomMemoryImgsLists[this.lastImgClick.id - 1].click = false;
                     }, 1000);
+
+                    this.totalCardsRevealed--;
                 }
+            }
+
+            // Controllo se sono state rivelate tutte le carte
+            if (this.totalCardsRevealed === 16) {
+                this.endGame = true;
             }
         },
         /**
