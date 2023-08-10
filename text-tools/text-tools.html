@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="css/text-tools.css">
 
     <!-- Icona -->
-    <link rel="icon" href="img/text-tools-icon.jpg">
+    <link rel="icon" href="img/text-tools-icon.png">
 
     <!-- Vue.js -->
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
@@ -27,6 +27,33 @@
 
 <body>
     <div id="app">
+        <main>
+            <div class="container">
+                <div class="my-icon mb-3">
+                    <img src="img/text-tools-icon.png" alt="text tools">
+                </div>
+                <h1 class="text-center text-uppercase m-0 pb-5">Text Tools</h1>
+                <!-- Sezione dove inserire il testo -->
+                <div class="mb-3">
+                    <label for="text" class="form-label fw-bold">Copy or write the text below:</label>
+                    <textarea class="form-control" id="text" rows="3"
+                    v-model="textInsert"></textarea>
+                </div>
+                <!-- Sezione pulsante -->
+                <div class="mb-5">
+                    <button type="button" class="btn btn-primary" @click="viewCount()">Start</button>
+                </div>
+                <!-- Sezione conteggio -->
+                <div class="box-count" v-show="start === true">
+                    <p><span class="me-1">{{ textsCount.characters }}</span> Characters</p>
+                    <p><span class="me-1">{{ textsCount.charactersWidthSpace }}</span> Characters (spaces included)</p>
+                    <p><span class="me-1">{{ textsCount.words }}</span> Words</p>
+                    <p><span class="me-1">{{ textsCount.phrases }}</span> Phrases</p>
+                    <p><span class="me-1">{{ textsCount.paragraphs }}</span> Paragraphs</p>
+                    <p><span class="me-1">{{ textsCount.mostRepeatedWord.wordRepeat }}</span> is the word that has been repeated several times (<span class="me-1 ms-1">{{ textsCount.mostRepeatedWord.numberOfRepetitions }}</span>)</p>
+                </div>
+            </div>
+        </main>
     </div>
 
     <!-- Custom Js -->

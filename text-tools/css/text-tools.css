@@ -1,0 +1,53 @@
+main {
+    padding: 10rem 0;
+    background-color: #F7E987;
+    min-height: 100vh;
+}
+
+body {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #252B48;
+}
+
+.form-control:focus {
+    color: #445069;
+    background-color: #faf7e3;
+    border-color: #5B9A8B;
+    outline: 0;
+    box-shadow: 0 0 0 .25rem rgba(91, 154, 139,.25);
+}
+
+textarea.form-control {
+    background-color: #faf7e3;
+}
+
+.my-icon {
+    max-width: 4rem;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 2px 2px 5px 0px rgb(37, 43, 72, .3);
+}
+
+.my-icon > img{
+    width: 100%;
+}
+
+.btn-primary {
+    --bs-btn-bg: #252B48;
+    --bs-btn-border-color: #252B48;
+    --bs-btn-hover-bg: #5B9A8B;
+    --bs-btn-hover-border-color: #5B9A8B;
+    --bs-btn-active-bg: #5B9A8B;
+    --bs-btn-active-border-color: #5B9A8B;
+}
+
+.btn-primary:focus {
+    transform: scale(.95);
+}
+
+.box-count span {
+    background-color: #252B48;
+    border-radius: .5rem;
+    padding: .3rem;
+    color: #F7E987;
+}
