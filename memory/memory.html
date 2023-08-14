@@ -29,6 +29,10 @@
     <div id="app">
         <main class="container mt-5 mb-5">
             <h1 class="my-text-darkred text-center text-uppercase p-0 m-0 pb-5">Memory</h1>
+            <!-- Sezione turno -->
+            <div class="d-flex justify-content-center align-items-center" v-show="firstClick === true">
+                <p class="fs-3 my-text-darkred text-uppercase fst-italic fw-bold">{{ player.count }}° player's turn</p>
+            </div>
             <!-- Sezione carte -->
             <div class="row gy-4">
                 <div class="col-4 col-md-3 col-lg-2" v-for="memoryImg in randomMemoryImgsLists"
@@ -42,7 +46,7 @@
             </div>
             <!-- Sezione gioco terminato -->
             <div v-if="endGame === true">
-                <h2 class="text-center p-0 m-0 pt-5 my-text-darkred">You Win, Great Job!</h2>
+                <h2 class="text-center p-0 m-0 pt-5 my-text-darkred">{{ winner }}</h2>
             </div>
         </main>
     </div>

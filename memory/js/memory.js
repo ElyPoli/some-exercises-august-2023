@@ -94,7 +94,13 @@ const app = Vue.createApp({
             stopClick: false,
             firstClick: true,
             endGame: false,
+            winner: "",
             totalCardsRevealed: 0,
+            player: {
+                count: 1,
+                scorePlayerOne: 0,
+                scorePlayerTwo: 0,
+            }
         }
     },
     methods: {
@@ -141,32 +147,53 @@ const app = Vue.createApp({
                 this.lastImgClick.click = imgClick.click;
             } else {
                 imgClick.click = true;
-                this.firstClick = true;
                 this.disableCardClicks(); // Rendo momentaneamente non cliccabili le card
-                this.totalCardsRevealed++;
                 if (this.lastImgClick.img != imgClick.img) {
                     // Dopo un secondo le nascondo nascondo entrambe le carte 
                     setTimeout(() => {
                         imgClick.click = false;
                         this.randomMemoryImgsLists[this.lastImgClick.id - 1].click = false;
                     }, 1000);
-
-                    this.totalCardsRevealed--;
+                } else {
+                    this.totalCardsRevealed++;
+                    // Aggiorno il punteggio
+                    if (this.player.count === 1) {
+                        this.player.scorePlayerOne++;
+                    } else {
+                        this.player.scorePlayerTwo++;
+                    }
                 }
             }
 
             // Controllo se sono state rivelate tutte le carte
             if (this.totalCardsRevealed === 16) {
                 this.endGame = true;
+
+                // Controllo il vincitore
+                if (this.player.scorePlayerOne > this.player.scorePlayerTwo) {
+                    this.winner = "Great Job, Player 1! You're the Winner";
+                } else if (this.player.scorePlayerOne < this.player.scorePlayerTwo) {
+                    this.winner = "Great Job, Player 2! You're the Winner";
+                } else {
+                    this.winner = "Memory Duel Ends in a Tie! Keep Playing!";
+                }
             }
         },
         /**
-         * Rende tutte le card momentaneamente non cliccabili
+         * Rende tutte le card momentaneamente non cliccabili e aggiorna il turno
          */
         disableCardClicks() {
             this.stopClick = true;
             setTimeout(() => {
                 this.stopClick = false;
+
+                // Aggiorno il turno
+                if (this.player.count === 1) {
+                    this.player.count = 2;
+                } else {
+                    this.player.count = 1;
+                }
+                this.firstClick = true;
             }, 1100);
         },
     },
