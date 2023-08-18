@@ -1,0 +1,18 @@
+:root {
+    --bs-primary: #0D1282;
+    --bs-primary-rgb: 13, 18, 130;
+}
+
+.my-link:hover {
+    background-color: white;
+    cursor: pointer;
+    transition: background-color .5s, color .5s;
+}
+
+a {
+    color: white;
+}
+
+.my-link:hover a {
+    color: #0D1282;
+}
